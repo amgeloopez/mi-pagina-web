@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UAEM - Almohada Confort</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* CONFIGURACIÓN COLORES AESTHETIC ROSA PASTEL Y PLANTAS */
+        :root {
+            --bg-main: #fff0f3;        /* Fondo rosita pastel muy suave y claro */
+            --bg-card: #fff5f7;        /* Rosa aún más sutil para contenedores */
+            --primary-color: #6c2d4a;   /* Vino/Magnolia UAEM oscuro */
+            --secondary-color: #d47a96; /* Rosa viejo brillante */
+            --accent-color: #4a7c59;    /* Verde plantitas */
+            --text-dark: #2d3748;       /* Gris carbón para lectura */
+            --text-muted: #8a7a80;      /* Gris rosáceo */
+        }
+
+        * { 
+            box-sizing: border-box; 
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            font-family: 'Urbanist', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* CONTENEDOR EN FORMATO DE PRESENTACIÓN */
+        .slide-container {
+            width: 100%;
+            max-width: 1200px;
+            background-color: var(--bg-card);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(219, 112, 147, 0.08);
+            margin: 35px 20px;
+            padding: 55px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #fae1e6;
+        }
+
+        /* PORTADA PRINCIPAL */
+        .hero-slide {
+            background: linear-gradient(135deg, #ffe3e8 0%, #fff0f3 100%);
+            border: 2px solid #fbc4d2;
+            text-align: center;
+        }
+
+        .logo-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            width: 100%; 
+            margin-bottom: 35px;
+            padding: 0 10px;
+        }
+         
+        .logo-header img {
+            height: 100px;  
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .hero-slide h1 { 
+            font-family: 'Merriweather', serif;
+            font-size: 46px; 
+            color: var(--primary-color);
+            margin: 15px 0;
+        }
+
+        .hero-slide h3 { 
+            font-size: 24px; 
+            color: var(--secondary-color); 
+            margin-bottom: 25px; 
+        }
+
+        /* RECUADRO DE INTEGRANTES */
+        .team-box {
+            margin-top: 25px; 
+            background: rgba(255, 255, 255, 0.7); 
+            padding: 25px; 
+            border-radius: 15px;
+            border: 1px solid #fbc4d2;
+        }
+
+        .team-box p {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .team-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            list-style: none;
+        }
+
+        .team-list li { 
+            background: #fffbfe; 
+            padding: 10px 15px; 
+            border-radius: 8px; 
+            font-size: 17px;
+            color: var(--text-dark);
+            border: 1px solid #ffe5ec;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .team-list li i {
+            color: var(--secondary-color);
+        }
+
+        /* TÍTULOS DE LAS DIAPOSITIVAS */
+        .slide-title {
+            font-family: 'Merriweather', serif;
+            font-size: 32px;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            border-left: 5px solid var(--secondary-color);
+            padding-left: 15px;
+        }
+
+        /* DISEÑO DE DOS COLUMNAS */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .project-info h3 {
+            font-size: 24px;
+            color: var(--secondary-color);
+            margin-bottom: 12px;
+        }
+
+        .project-info p {
+            font-size: 17px;
+            line-height: 1.6;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        /* GRUPO DE BOTONES PARA MÚLTIPLES CAPTURAS */
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        /* BOTONES INTERACTIVOS */
+        .btn-interact {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            color: white;
+            padding: 14px 26px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 4px 12px rgba(219, 112, 147, 0.2);
+            cursor: pointer;
+        }
+
+        .btn-interact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(219, 112, 147, 0.4);
+            filter: brightness(1.05);
+        }
+
+        /* CONTENEDORES MULTIMEDIA POR DEFAULT */
+        .media-display-area {
+            background: #ffebee;
+            border: 1px dashed #fbc4d2;
+            border-radius: 15px;
+            height: 350px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .media-display-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* CUADRÍCULA DE SECCIONES (TILES MODIFICADO A REPEAT AUTO-FIT) */
+        .tiled-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        /* Ajuste de columnas para que los elementos queden bien distribuidos */
+        @media (max-width: 900px) {
+            .tiled-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .tile {
+            background: #fffbfe;
+            padding: 20px 15px;
+            border-radius: 15px;
+            border: 1px solid #ffe5ec;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .tile:hover {
+            transform: translateY(-4px);
+            border-color: var(--secondary-color);
+        }
+
+        .tile .icon { 
+            font-size: 35px; 
+            color: var(--accent-color); 
+            margin-bottom: 12px; 
+        }
+
+        .tile h3 {
+            font-size: 18px;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        /* TABLAS */
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            background: #fffbfe; 
+            border-radius: 15px; 
+            overflow: hidden; 
+            border: 1px solid #ffe5ec;
+        }
+         
+        th, td { 
+            padding: 16px; 
+            text-align: left; 
+            border-bottom: 1px solid #ffe5ec; 
+            font-size: 15px;
+        }
+         
+        th { 
+            background: var(--primary-color); 
+            color: white; 
+        }
+
+        /* SISTEMA MODAL FLOTANTE */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-window {
+            background-color: #fff;
+            width: 90%;
+            max-width: 900px;
+            height: 85vh;
+            border-radius: 18px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            border: 3px solid var(--secondary-color);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            animation: scaleUp 0.3s ease;
+        }
+
+        @keyframes scaleUp {
+            from { transform: scale(0.9); }
+            to { transform: scale(1); }
+        }
+
+        .modal-header {
+            padding: 15px 25px;
+            background-color: var(--bg-card);
+            border-bottom: 1px solid #ffe5ec;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .modal-header h3 {
+            font-family: 'Merriweather', serif;
+            font-size: 20px;
+            color: var(--primary-color);
+        }
+
+        .modal-close-btn {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.2s;
+        }
+
+        .modal-close-btn:hover {
+            background: var(--primary-color);
+        }
+
+        .modal-body {
+            flex-grow: 1;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fcf8f9;
+            overflow: hidden;
+        }
+
+        .modal-body img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .modal-body iframe, .modal-body video {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 6px;
+        }
+
+        footer {
+            width: 100%;
+            max-width: 1200px;
+            text-align: center;
+            padding: 35px 20px;
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-window">
+            <div class="modal-header">
+                <h3 id="modalTitle">Visualizador de Evidencias</h3>
+                <button class="modal-close-btn" onclick="cerrarModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <div class="slide-container hero-slide">
+        <div class="logo-header">
+            <img src="imagenuaem.jpg" alt="Escudo UAEMex">
+            <img src="imagensorjuana.jpg" alt="Logo Plantel Sor Juana">
+        </div>
+        <div style="margin: auto 0;">
+            <p style="color: var(--accent-color); letter-spacing: 3px; font-weight: bold; font-size: 13px; margin-bottom: 8px;">🌿 AVANCE COLABORATIVO MULTIDISCIPLINARIO 🌸</p>
+            <h1>ALMOHADA PORTÁTIL "CONFORT"</h1>
+            <h3>Innovación y Descanso Escolar</h3>
+            <p style="font-size: 18px; color: var(--text-muted);">Sexto Semestre | Grupo 12 | <strong>Turno Vespertino</strong></p>
+            
+            <div class="team-box">
+                <p><i class="fas fa-users"></i> INTEGRANTES DEL EQUIPO RESPONSABLE:</p>
+                <ul class="team-list">
+                    <li><i class="fas fa-user-graduate"></i> Capi Díaz Janet</li>
+                    <li><i class="fas fa-user-graduate"></i> Espinosa López Quetzaly Adelin</li>
+                    <li><i class="fas fa-user-graduate"></i> Maldonado Domínguez José Juan</li>
+                    <li><i class="fas fa-user-graduate"></i> Robles Carrasco Karime</li>
+                    <li><i class="fas fa-user-graduate"></i> Rodríguez Varela Litzi Ariana</li>
+                    <li><i class="fas fa-user-graduate"></i> Romero Hernández Valentina</li>
+                </ul>
+            </div>
+            <p style="margin-top: 25px; font-style: italic; color: var(--text-muted); font-size: 14px;">Mayo de 2026</p>
+        </div>
+    </div>
+
+    <div class="slide-container">
+        <h2 class="slide-title">🌿 Estructura Modular del Proyecto</h2>
+        <div class="tiled-content">
+            <div class="tile">
+                <div class="icon"><i class="fas fa-calculator"></i></div>
+                <h3>Estadística</h3>
+                <p>Análisis cuantitativo y proyecciones de mercado.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fas fa-flask"></i></div>
+                <h3>Química</h3>
+                <p>Componentes de polímeros y textiles.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fas fa-users"></i></div>
+                <h3>Sociología</h3>
+                <p>Entorno social y dinámicas del estudiante.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fas fa-palette"></i></div>
+                <h3>Apreciación del Arte II</h3>
+                <p>Estética visual y el boceto ergonómico textil.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Desarrollo Empresarial</h3>
+                <p>Plan de negocios enfocado al estudiante.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fas fa-spa"></i></div>
+                <h3>Psicología</h3>
+                <p>Higiene mental y sueño reparador.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fas fa-globe"></i></div>
+                <h3>Ciudadanía</h3>
+                <p>Identidad global y alcance social.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fas fa-heartbeat"></i></div>
+                <h3>Morfofisiología</h3>
+                <p>Fichas técnicas de biodiversidad.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-container">
+        <h2 class="slide-title">🌸 El Producto: Almohada Confort (Sociología)</h2>
+        <div class="two-column">
+            <div class="project-info">
+                <h3>Descanso y Bienestar Completo</h3>
+                <p>Un producto diseñado minuciosamente para optimizar la calidad del descanso de los alumnos, ofreciendo un soporte ergonómico inigualable para el cuello.</p>
+                <button onclick="abrirModal('image', 'almohada.jpg', 'Sociología - Almohada')" class="btn-interact">
+                    <i class="fas fa-image"></i> VER ALMOHADA
+                </button>
+            </div>
+            <div class="media-display-area">
+                <img src="https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?q=80&w=500&auto=format&fit=cover" alt="Almohada Confort Genérica">
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-container">
+        <h2 class="slide-title">🌿 01. Módulo: Apreciación del Arte II</h2>
+        <div class="two-column">
+            <div class="media-display-area">
+                <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=500&auto=format&fit=cover" alt="Propuesta Visual Arte Genérica">
+            </div>
+            <div class="project-info">
+                <h3>Diseño Creativo e Identidad Visual</h3>
+                <p>Analizamos las corrientes visuales de la UAEMex para diseñar una almohada práctica, ligera y con una identidad estética hermosa.</p>
+                <div class="btn-group">
+                    <button onclick="abrirModal('video', 'https://www.youtube.com/embed/Jw5QF909Tgo', 'Artes - Boceto y Diseño')" class="btn-interact" style="background: linear-gradient(135deg, #ff0000 0%, #b30000 100%);">
+                        <i class="fab fa-youtube"></i> REPRODUCIR VIDEO SHORTS
+                    </button>
+                    <button onclick="abrirModal('image', 'artes.jpg', 'Artes - Boceto Estructural')" class="btn-interact">
+                        <i class="fas fa-image"></i> VER IMAGEN ARTE
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-container">
+        <h2 class="slide-title">🌸 02. Módulo: Desarrollo Empresarial</h2>
+        <div class="two-column">
+            <div class="project-info">
+                <h3>Modelo de Negocios y Plan de Marketing</h3>
+                <p>Desarrollamos el plan comercial completo basándonos en costos accesibles para los alumnos del plantel (precio objetivo: $180 - $250 MXN).</p>
+                <p style="margin-bottom: 10px;"><strong>Slogan Comercial:</strong> <em>"Confort, descansa donde quieras"</em></p>
+                
+                <div class="btn-group">
+                    <button onclick="abrirModal('image', 'desarrollo_emp1.jpg', 'Desarrollo Emprendedor - Sección 1')" class="btn-interact">
+                        <i class="fas fa-file-image"></i> Ver Sección 1
+                    </button>
+                    <button onclick="abrirModal('image', 'desarrollo_emp2.jpg', 'Desarrollo Emprendedor - Sección 2')" class="btn-interact">
+                        <i class="fas fa-file-image"></i> Ver Sección 2
+                    </button>
+                    <button onclick="abrirModal('image', 'desarrollo_emp3.jpg', 'Desarrollo Emprendedor - Sección 3')" class="btn-interact">
+                        <i class="fas fa-file-image"></i> Ver Sección 3
+                    </button>
+                </div>
+            </div>
+            <div class="media-display-area">
+                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=500&auto=format&fit=cover" alt="Plan Empresarial Genérico">
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-container">
+        <h2 class="slide-title">🌸 03. Módulo: Psicología e Higiene Mental</h2>
+        <div class="two-column">
+            <div class="project-info">
+                <h3>Higiene del Sueño y Rendimiento Académico</h3>
+                <p>Dormir bien reduce los síntomas de estrés en temporada de exámenes. El uso estratégico de "Confort" en tiempos libres promueve la salud emocional.</p>
+                
+                <div class="btn-group">
+                    <button onclick="abrirModal('image', 'triptico.jpg', 'Psicología - Information Lado A')" class="btn-interact">
+                        <i class="fas fa-book-open"></i> Ver Información Lado A
+                    </button>
+                    <button onclick="abrirModal('image', 'triptico2.jpg', 'Psicología - Información Lado B')" class="btn-interact">
+                        <i class="fas fa-book-open"></i> Ver Información Lado B
+                    </button>
+                    <button onclick="abrirModal('video-local', 'video_psicologia.mp4', 'Psicología - Exposición')" class="btn-interact" style="background: linear-gradient(135deg, #4a7c59 0%, #284e3a 100%);">
+                        <i class="fas fa-video"></i> REPRODUCIR VIDEO PSICOLOGÍA
+                    </button>
+                </div>
+            </div>
+            <div class="media-display-area">
+                <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=500&auto=format&fit=cover" alt="Salud Mental Genérica">
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-container">
+        <h2 class="slide-title">🌿 04. Módulo: Formación Ciudadana</h2>
+        <div class="two-column">
+            <div class="media-display-area">
+                <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=500&auto=format&fit=cover" alt="Educación y Ciudadanía">
+            </div>
+            <div class="project-info">
+                <h3>Impacto Social y Ciudadano</h3>
+                <p>Evaluamos la contribución de nuestro proyecto a la comunidad, promoviendo hábitos saludables y sustentabilidad dentro del ámbito escolar.</p>
+                
+                <button onclick="abrirModal('video-local', 'video_ciudadania.mp4', 'Módulo Ciudadanía - Video Corporativo')" class="btn-interact" style="background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);">
+                    <i class="fas fa-play-circle"></i> REPRODUCIR VIDEO CIUDADANÍA
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-container">
+        <h2 class="slide-title">🧪 05. Módulo: Química</h2>
+        <div class="two-column">
+            <div class="media-display-area">
+                <img src="https://images.unsplash.com/photo-1617155093730-a8bf47be792d?q=80&w=500&auto=format&fit=cover" alt="Análisis de Polímeros Textiles Textiles">
+            </div>
+            <div class="project-info">
+                <h3>Componentes y Polímeros Textiles</h3>
+                <p>Análisis enfocado a los materiales ecológicos, el relleno PET biodegradable y el impacto en el entorno sustentable escolar.</p>
+                
+                <div class="btn-group">
+                    <button onclick="abrirModal('image', 'quimica.jpg', 'Química - Reporte 1')" class="btn-interact">
+                        <i class="fas fa-flask"></i> Ver Reporte 1
+                    </button>
+                    <button onclick="abrirModal('image', 'quimica2.jpg', 'Química - Reporte 2')" class="btn-interact">
+                        <i class="fas fa-flask"></i> Ver Reporte 2
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-container">
+        <h2 class="slide-title">📊 06. Módulo: Estadística</h2>
+        <div class="two-column">
+            <div class="project-info">
+                <h3>Análisis Cuantitativo y Proyecciones de Mercado</h3>
+                <p>Presentación de los datos recopilados mediante muestreos estadísticos, gráficas de demanda y validación financiera de la Almohada Confort.</p>
+                
+                <button onclick="abrirModal('pdf', 'colaborativo_estadistica.pdf', 'Estadística - Reporte Colaborativo')" class="btn-interact" style="background: linear-gradient(135deg, #4a7c59 0%, #6c2d4a 100%);">
+                    <i class="fas fa-file-pdf"></i> ABRIR TRABAJO COLABORATIVO (PDF)
+                </button>
+            </div>
+            <div class="media-display-area">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=500&auto=format&fit=cover" alt="Gráficas y Estadística">
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-container">
+        <h2 class="slide-title">🫁 07. Módulo: Morfofisiología</h2>
+        <div class="two-column">
+            <div class="media-display-area">
+                <img src="morfofisiologia.jpg" alt="Fichas Técnicas Morfofisiología">
+            </div>
+            <div class="project-info">
+                <h3>Biodiversidad: Fichas Técnicas</h3>
+                <p>En este módulo colaborativo, realizamos una investigación científica centrada en la elaboración de fichas técnicas detalladas de diversas especies animales y vegetales. Este estudio nos permitió analizar las estructuras biológicas y taxonómicas, contribuyendo a nuestra formación integral y multidisciplinaria dentro del proyecto escolar de este semestre.</p>
+                
+                <div class="btn-group">
+                    <button onclick="abrirModal('pdf', 'morfisiologia_1.pdf', 'Morfofisiología - Trabajo Colaborativo 1')" class="btn-interact" style="background: linear-gradient(135deg, #6c2d4a 0%, #4a7c59 100%);">
+                        <i class="fas fa-file-pdf"></i> TRABAJO COLABORATIVO 1 (PDF)
+                    </button>
+                    <button onclick="abrirModal('pdf', 'morfofisiologia_2.pdf', 'Morfofisiología - Trabajo Colaborativo 2')" class="btn-interact" style="background: linear-gradient(135deg, #4a7c59 0%, #d47a96 100%);">
+                        <i class="fas fa-file-pdf"></i> TRABAJO COLABORATIVO 2 (PDF)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-container">
+        <h2 class="slide-title">🌿 Especificaciones Técnico-Académicas</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Atributo del Producto</th>
+                    <th>Detalle Técnico "Confort"</th>
+                    <th>Beneficio Directo al Alumno</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Dimensión y Peso</strong></td>
+                    <td>18 cm de diámetro / Peso: 200 gramos</td>
+                    <td>Súper compacta. No quita espacio en la mochila escolar.</td>
+                </tr>
+                <tr>
+                    <td><strong>Material Ecológico</strong></td>
+                    <td>Telas reutilizadas y relleno PET biodegradable</td>
+                    <td>Cuidado ecológico al estilo de la UAEMex.</td>
+                </tr>
+                <tr>
+                    <td><strong>Público Destinatario</strong></td>
+                    <td>Estudiantes del Plantel Sor Juana Inés de la Cruz</td>
+                    <td>Ideal para descansos entre módulos o viajes en transporte.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="slide-container" style="text-align: center; justify-content: center; background: #ffe3e8;">
+        <i class="fas fa-leaf" style="font-size: 45px; color: var(--accent-color); margin-bottom: 15px;"></i>
+        <h2 style="font-family: 'Merriweather'; font-size: 30px; color: var(--primary-color); margin-bottom: 12px;">"Confort, descansa donde quieras"</h2>
+        <p style="font-size: 17px; max-width: 750px; margin: 0 auto 25px auto; color: var(--text-dark);">
+            Proyecto multidisciplinario escolar de 6to Semestre. Diseñado con compromiso hacia la salud mental estudiantil y sustentabilidad ambiental.
+        </p>
+        <p style="font-weight: bold; color: var(--secondary-color); font-size: 15px;">
+            Plantel "Sor Juana Inés de la Cruz" &bull; UAEMex 2026
+        </p>
+    </div>
+
+    <footer>
+        <p>Universidad Autónoma del Estado de México &copy; 2026. Turno Vespertino.</p>
+    </footer>
+
+    <script>
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modalBody = document.getElementById('modalBody');
+        const modalTitle = document.getElementById('modalTitle');
+
+        function abrirModal(tipo, url, titulo) {
+            modalTitle.innerText = titulo;
+            modalBody.innerHTML = ''; // Limpiar ventana previa
+
+            if (tipo === 'image') {
+                modalBody.innerHTML = `<img src="${url}" alt="${titulo}">`;
+            } else if (tipo === 'video') {
+                modalBody.innerHTML = `<iframe src="${url}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+            } else if (tipo === 'video-local') {
+                modalBody.innerHTML = `<video src="${url}" controls autoplay style="max-width:100%; max-height:100%;"></video>`;
+            } else if (tipo === 'pdf') {
+                modalBody.innerHTML = `<iframe src="${url}" type="application/pdf"></iframe>`;
+            }
+
+            modalOverlay.classList.add('active');
+        }
+
+        function cerrarModal() {
+            modalOverlay.classList.remove('active');
+            modalBody.innerHTML = ''; // Detener videos o PDFs al cerrar
+        }
+
+        // Cerrar al hacer clic fuera del recuadro blanco
+        modalOverlay.addEventListener('click', function(e) {
+            if (e.target === modalOverlay) {
+                cerrarModal();
+            }
+        });
+    </script>
+
+</body>
+</html>
